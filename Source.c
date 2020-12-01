@@ -1,32 +1,48 @@
-#include <stdio.h>
-
+#include <stdio.h> 
 int main() {
-	unsigned char str[255], vowels[] = { 'A','a','E','e','I','i','O','o','U','u','Y','y' };
-	printf("Enter the string: ");
-	fgets(str, 255, stdin);
-	int i = 0, j = 0, lenght = 0, counter[6] = { 0 };
-	float procent = 0, symbols = 0;
-	while (str[i] != '\0') {
-		lenght++;
-		if(!(str[i]>='A' && str[i]<='Z'|| str[i]>='a' && str[i]<='z'))
-			symbols++;
-		i++;
+	unsigned char str[255] = "", buffer = 0, letters[26] = "", LETTERS[26] = "";
+	int i = 0, j = 0, counter[26] = { 0 };
+	float lenght = 0;
+	for (i = 'a'; i <= 'z'; i++) {
+		letters[i - 'a'] = i;
 	}
-	for (i = 0; i <= lenght; i++) {
-		for (j = 0; j <= 11; j += 2) {
-			if ((str[i] == vowels[j]) || (str[i] == vowels[j + 1])) {
-				counter[j / 2]++;
+	for (i = 'A'; i <= 'Z'; i++) {
+		LETTERS[i - 'A'] = i;
+	}
+	while (1) {
+		printf("Enter the string: ");
+		fgets(str, 255, stdin);
+		if (!(str[253] == '\0' || str[253] == '\n')) {
+			buffer = getchar();
+			if (buffer != '\n') {
+				while (buffer != '\n')			//buffercleaner
+					scanf("%c", &buffer);
+				printf("Checking an array for overflow...\n\nError! Please try again.\n\n");
+			}
+			else {
+				printf("Checking an array for overflow...\n\nSuccessfully!\n\n");
 				break;
 			}
 		}
-	}
-	for (i = 0; i <= 11; i += 2) {
-		if (counter[i / 2] == 0)
-			printf("No symbols %c and %c, 0% \n", vowels[i], vowels[i + 1]);
 		else {
-			procent = counter[i / 2]/(lenght - symbols);
-			printf("%c + %c = %d ,%2.f %\n", vowels[i], vowels[i + 1], counter[i / 2], procent*100);
+			printf("Checking an array for overflow...\n\nSuccessfully!\n\n");
+			break;
 		}
+	}
+	for (i = 0; str[i] != '\n'; i++) {
+		if ((str[i] >= 'A' && str[i] <= 'Z') || (str[i] >= 'a' && str[i] <= 'z')) {
+			for (j = 0; j <= 25; j++) {
+				if (str[i] == letters[j] || str[i] == LETTERS[j])
+					counter[j]++;
+			}
+			lenght++;
+		}
+	}
+	printf("LENGTH = %.0f\n", lenght);
+	for (i = 0; i <= 25; i++) {
+		if (i % 5 == 0)
+			printf("\n%c + %c = %d, %.2f \t", LETTERS[i], letters[i], counter[i], counter[i] * 100 / lenght);
+		else printf("%c + %c = %d, %.2f \t", LETTERS[i], letters[i], counter[i], counter[i] * 100 / lenght);
 	}
 	getchar();
 	return 0;
