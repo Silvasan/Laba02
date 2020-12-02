@@ -1,6 +1,6 @@
 #include <stdio.h> 
 int main() {
-	unsigned char str[255] = "", buffer = 0, letters[26] = "", LETTERS[26] = "";
+	unsigned char str[250] = "", buffer = 0, letters[26] = "", LETTERS[26] = "";
 	int i = 0, j = 0, counter[26] = { 0 };
 	float lenght = 0;
 	for (i = 'a'; i <= 'z'; i++) {
@@ -11,21 +11,21 @@ int main() {
 	}
 	while (1) {
 		printf("Enter the string: ");
-		fgets(str, 255, stdin);
-		if (!(str[253] == '\0' || str[253] == '\n')) {
+		fgets(str, 250, stdin);
+		if (!(str[248] == '\0' || str[248] == '\n')) {
 			buffer = getchar();
 			if (buffer != '\n') {
 				while (buffer != '\n')			//buffercleaner
 					scanf("%c", &buffer);
-				printf("Checking an array for overflow...\n\nError! Please try again.\n\n");
+				printf("\nChecking an array for overflow...\n\nError! Please try again.\n\n");
 			}
 			else {
-				printf("Checking an array for overflow...\n\nSuccessfully!\n\n");
+				printf("\nChecking an array for overflow...\n\nSuccessfully!\n\n");
 				break;
 			}
 		}
 		else {
-			printf("Checking an array for overflow...\n\nSuccessfully!\n\n");
+			printf("\nChecking an array for overflow...\n\nSuccessfully!\n\n");
 			break;
 		}
 	}
@@ -38,7 +38,7 @@ int main() {
 			lenght++;
 		}
 	}
-	printf("LENGTH = %.0f\n", lenght);
+	printf("Letters = %.0f\n", lenght);
 	for (i = 0; i <= 25; i++) {
 		if (i % 5 == 0)
 			printf("\n%c + %c = %d, %.2f \t", LETTERS[i], letters[i], counter[i], counter[i] * 100 / lenght);
