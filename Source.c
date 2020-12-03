@@ -1,6 +1,6 @@
 #include <stdio.h> 
 int main() {
-	unsigned char str[250] = "", buffer = 0, letters[26] = "", LETTERS[26] = "";
+	unsigned char str[250] = "", buffer = 0, letters[26] = "", LETTERS[26] = "", pr='%';
 	int i = 0, j = 0, counter[26] = { 0 };
 	float lenght = 0;
 	for (i = 'a'; i <= 'z'; i++) {
@@ -28,6 +28,7 @@ int main() {
 			printf("\nChecking an array for overflow...\n\nSuccessfully!\n\n");
 			break;
 		}
+	
 	}
 	for (i = 0; str[i] != '\n'; i++) {
 		if ((str[i] >= 'A' && str[i] <= 'Z') || (str[i] >= 'a' && str[i] <= 'z')) {
@@ -38,11 +39,11 @@ int main() {
 			lenght++;
 		}
 	}
-	printf("Letters = %.0f\n", lenght);
+	printf("Result:\n");
 	for (i = 0; i <= 25; i++) {
 		if (i % 5 == 0)
-			printf("\n%c + %c = %d, %.2f \t", LETTERS[i], letters[i], counter[i], counter[i] * 100 / lenght);
-		else printf("%c + %c = %d, %.2f \t", LETTERS[i], letters[i], counter[i], counter[i] * 100 / lenght);
+			printf("\n%c + %c = %d, %.2f%c \t", LETTERS[i], letters[i], counter[i], counter[i] * 100 / lenght, pr);
+		else printf("%c + %c = %d, %.2f%c\t", LETTERS[i], letters[i], counter[i], counter[i] * 100 / lenght, pr);
 	}
 	getchar();
 	return 0;
